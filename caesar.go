@@ -1,20 +1,21 @@
 // Package caesar provides a simple way to encrypt and decrypt messages using the Caesar cipher.
-// It works with UTF-8 strings but can only encrypt/decrypt the latin ASCII characters ([A..Z], [a..z]) in a string.
+// Encryption & decryption works on UTF-8 strings although only letters in the English alphabet ([A..Z], [a..z]) are affected.
 package caesar
 
 const lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz"
 const upperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-// Encrypts a plaintext string by shifting each character with the provided key
+// Encrypts a plaintext string by shifting each character with the provided key.
 func EncryptPlaintext(plaintext string, key int) string {
 	return rotateText(plaintext, key)
 }
 
-// Decrypts ciphertext by reverse shifting each character in the ciphertext with the key provided
+// Decrypts a ciphertext string by reverse shifting each character with the provided key.
 func DecryptCiphertext(ciphertext string, key int) string {
 	return rotateText(ciphertext, -key)
 }
 
+// Takes a string and rotates each character by the provided amount.
 func rotateText(inputText string, rot int) string {
 	rot %= 26
 	rotatedText := []byte(inputText)
